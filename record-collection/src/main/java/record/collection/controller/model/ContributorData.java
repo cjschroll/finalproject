@@ -55,7 +55,7 @@ public class ContributorData {
         private String albumTitle;
         private int yearReleased;
         private Artist artist;
-       // private Contributor contributor;
+        private Contributor contributor;
         private Set<GenreData> genres = new HashSet<>();
         
         public AlbumData(Album album) {
@@ -63,7 +63,7 @@ public class ContributorData {
             this.albumTitle = album.getAlbumTitle();
             this.yearReleased = album.getYearReleased();
             this.artist = album.getArtist();
-           // this.contributor = album.getContributor();
+            this.contributor = album.getContributor();
             
             for (Genre genre : album.getGenres()) {
                 this.genres.add(new GenreData(genre));

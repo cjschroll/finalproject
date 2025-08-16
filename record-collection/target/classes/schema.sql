@@ -11,7 +11,6 @@ CREATE TABLE genre (
     PRIMARY KEY (genre_id)
 );
 
-
 CREATE TABLE contributor (
     contributor_id int NOT NULL AUTO_INCREMENT,
     contributor_name varchar(256) NOT NULL,
@@ -34,14 +33,6 @@ CREATE TABLE album (
     PRIMARY KEY (album_id),
     FOREIGN KEY (contributor_id) REFERENCES contributor (contributor_id),
     FOREIGN KEY (artist_id) REFERENCES artist (artist_id)
-);
-
-CREATE TABLE artist_album (
-    album_id int NOT NULL,
-    artist_id int NOT NULL,
-    UNIQUE KEY (artist_id, album_id),
-    FOREIGN KEY (artist_id) REFERENCES artist (artist_id) ON DELETE CASCADE,
-    FOREIGN KEY (album_id) REFERENCES album (album_id) ON DELETE CASCADE
 );
 
 CREATE TABLE genre_album (

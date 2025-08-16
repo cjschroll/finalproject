@@ -1,11 +1,14 @@
 package record.collection.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import record.collection.controller.model.ContributorData;
+import record.collection.controller.model.ContributorData.AlbumData;
 import record.collection.dao.AlbumDao;
 import record.collection.entity.Album;
 
@@ -32,5 +35,26 @@ public class AlbumService {
 
 	public ContributorData saveContributor(ContributorData contributorData) {
 		return null;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<AlbumData> retrieveAllAlbums() {
+		List<Album> albumEntities = albumDao.findAll();
+		List<AlbumData> albumDtos = new LinkedList<>();
+		
+		for(Album album : albumEntities) {
+			AlbumData albumData = new AlbumData(album);
+			albumDtos.add(albumData);
+		}
+		
+		return albumDtos;
+	}
+
+	@Transactional(readOnly = false)
+	public AlbumData saveAlbum(AlbumData albumData) {
+		Album album = albumData.toAlbum();
+		Album dbAlbum = albumDao.save(album);
+		
+		return new AlbumData(dbAlbum);
 	}
 }

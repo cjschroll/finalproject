@@ -31,11 +31,11 @@ public class Album {
 	private Artist artist;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "contributor_id", nullable = false)
+	@JoinColumn(name = "contributor_id")
 	private Contributor contributor;
 
 	@ManyToMany
-	@JoinTable(name = "genre_ablum", joinColumns = @JoinColumn(name = "album_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+	@JoinTable(name = "genre_album", joinColumns = @JoinColumn(name = "album_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	private Set<Genre> genres = new HashSet<>();
 	
 }

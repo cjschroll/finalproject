@@ -9,13 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import record.collection.controller.model.ContributorData.GenreData;
 import record.collection.dao.GenreDao;
+import record.collection.entity.Album;
 import record.collection.entity.Genre;
 
 @Service
 public class GenreService {
     @Autowired
     private GenreDao genreDao;
-
+    @Autowired
+    private AlbumService albumService;
+    
     public List<Genre> findAll() {
         return genreDao.findAll();
     }
@@ -39,5 +42,20 @@ public class GenreService {
     	}
     	
 		return genreDtos;
+	}
+
+	@Transactional(readOnly = false)
+	public GenreData saveGenre(GenreData genreData) {
+		Genre genre = genreData.toGenre();
+		Genre dbGenre = genreDao.save(genre);
+		
+		return new GenreData(dbGenre);
+	}
+	@Transactional(readOnly = false)
+	public void joinGenreAndAlbum(Long genreId, Long albumId) {
+		Genre genre = findById(genreId);
+		Album album = albumService.findById(albumId);
+		album.getGenres().add(genre);
+		genre.getAlbums().add(album);
 	}
 }

@@ -1,10 +1,13 @@
 package record.collection.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import record.collection.controller.model.ContributorData.ArtistData;
 import record.collection.dao.ArtistDao;
 import record.collection.entity.Artist;
 
@@ -28,4 +31,25 @@ public class ArtistService {
     public void delete(Long id) {
     	ArtistDao.deleteById(id);
     }
+
+	@Transactional(readOnly = true)
+	public List<ArtistData> retrieveAllArtists() {
+		List<Artist> artistEntities = ArtistDao.findAll();
+		List<ArtistData> artistDtos = new LinkedList<>();
+		
+		for(Artist artist : artistEntities) {
+			ArtistData artistData = new ArtistData(artist);
+			artistDtos.add(artistData);
+		}
+		
+		return artistDtos;
+	}
+
+	@Transactional(readOnly = false)
+	public ArtistData saveArtist(ArtistData artistData) {
+		Artist artist = artistData.toArtist();
+		Artist dbArtist = ArtistDao.save(artist);
+		
+		return new ArtistData(dbArtist);
+	}
 }
