@@ -20,16 +20,16 @@ public class ArtistService {
         return ArtistDao.findAll();
     }
 
-    public Artist findById(Long id) {
-        return ArtistDao.findById(id).orElse(null);
+    public Artist findById(Long artistId) {
+        return ArtistDao.findById(artistId).orElse(null);
     }
 
     public Artist save(Artist collection) {
         return ArtistDao.save(collection);
     }
 
-    public void delete(Long id) {
-    	ArtistDao.deleteById(id);
+    public void delete(Long artistId) {
+    	ArtistDao.deleteById(artistId);
     }
 
 	@Transactional(readOnly = true)

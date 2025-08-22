@@ -112,17 +112,33 @@ public class ContributorData {
         public static class ArtistData {
             private Long artistId;
             private String artistName;
+            private Set<AlbumData> albums = new HashSet<>();
             
             public ArtistData(Artist artist) {
                 this.artistId = artist.getArtistId();
                 this.artistName = artist.getArtistName();
+                
+                for (Album album : artist.getAlbums()) {
+                    this.albums.add(new AlbumData(album));
+                }
             }
             
             public Artist toArtist() {
                 Artist artist = new Artist();
                 artist.setArtistId(artistId);
                 artist.setArtistName(artistName);
+                
+                for (AlbumData albumData : albums) {
+                    artist.getAlbums().add(albumData.toAlbum());
+                }
                 return artist;
+            }
+            
+            @Data
+            @NoArgsConstructor
+            public class AlbumGenreData {
+                private Long genreId;
+                private Long artistId;
             }
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import record.collection.controller.model.ContributorData;
 import record.collection.controller.model.ContributorData.AlbumData;
 import record.collection.dao.AlbumDao;
 import record.collection.entity.Album;
@@ -16,7 +15,7 @@ import record.collection.entity.Album;
 public class AlbumService {
     @Autowired
     private AlbumDao albumDao;
-
+    
     public List<Album> findAll() {
         return albumDao.findAll();
     }
@@ -32,10 +31,6 @@ public class AlbumService {
     public void delete(Long id) {
         albumDao.deleteById(id);
     }
-
-	public ContributorData saveContributor(ContributorData contributorData) {
-		return null;
-	}
 	
 	@Transactional(readOnly = true)
 	public List<AlbumData> retrieveAllAlbums() {
@@ -45,16 +40,7 @@ public class AlbumService {
 		for(Album album : albumEntities) {
 			AlbumData albumData = new AlbumData(album);
 			albumDtos.add(albumData);
-		}
-		
+			}
 		return albumDtos;
-	}
-
-	@Transactional(readOnly = false)
-	public AlbumData saveAlbum(AlbumData albumData) {
-		Album album = albumData.toAlbum();
-		Album dbAlbum = albumDao.save(album);
-		
-		return new AlbumData(dbAlbum);
 	}
 }

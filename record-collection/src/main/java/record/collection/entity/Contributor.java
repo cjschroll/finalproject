@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -20,6 +22,8 @@ public class Contributor {
 	private String contributorName;
 	private String contributorUsername;
 
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@OneToMany(mappedBy = "contributor", cascade = CascadeType.PERSIST)
 	private Set<Album> albums = new HashSet<>();
 	

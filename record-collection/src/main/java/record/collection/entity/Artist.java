@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -22,6 +23,8 @@ public class Artist {
 	@EqualsAndHashCode.Exclude
 	private String artistName;
 
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@OneToMany(mappedBy = "artist",cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Album> albums = new HashSet<>();
 

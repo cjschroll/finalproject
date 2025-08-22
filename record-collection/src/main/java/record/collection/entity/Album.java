@@ -14,6 +14,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -26,16 +27,27 @@ public class Album {
 	@EqualsAndHashCode.Exclude
 	private int yearReleased;
 
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name = "artist_id")
 	private Artist artist;
 	
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "contributor_id")
 	private Contributor contributor;
 
-	@ManyToMany
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "genre_album", joinColumns = @JoinColumn(name = "album_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	private Set<Genre> genres = new HashSet<>();
+
+	public void getAlbumTitle(String albumTitle2) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

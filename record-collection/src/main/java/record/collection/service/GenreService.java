@@ -50,9 +50,10 @@ public class GenreService {
 		Genre dbGenre = genreDao.save(genre);
 		
 		return new GenreData(dbGenre);
-	}
+}
+
 	@Transactional(readOnly = false)
-	public void joinGenreAndAlbum(Long genreId, Long albumId) {
+	public void joinAlbumAndGenre(Long genreId, Long albumId) {
 		Genre genre = findById(genreId);
 		Album album = albumService.findById(albumId);
 		album.getGenres().add(genre);
