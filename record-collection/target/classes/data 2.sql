@@ -1,0 +1,14 @@
+INSERT INTO genre (genre_name) VALUES ('Pop Punk');
+INSERT INTO genre (genre_name) VALUES ('Punk Rock');
+INSERT INTO genre (genre_name) VALUES ('Emo');
+INSERT INTO genre (genre_name) VALUES ('Screamo');
+INSERT INTO genre (genre_name) VALUES ('Hardcore');
+INSERT INTO genre (genre_name) VALUES ('Post-Hardcore');
+INSERT INTO genre (genre_name) VALUES ('Metalcore');
+INSERT INTO genre (genre_name) VALUES ('Ska');
+INSERT INTO contributor (contributor_name, contributor_username) VALUES ('Gerard Way', 'black_parade');
+INSERT INTO contributor (contributor_name, contributor_username) VALUES ('Pete Wentz', 'fob_bassist');
+INSERT INTO artist (artist_name) VALUES ('My Chemical Romance');
+INSERT INTO artist (artist_name) VALUES ('Fall Out Boy');
+INSERT INTO album (album_title, year_released, contributor_id, artist_id) VALUES ('Three Cheers for Sweet Revenge', '2003', 1, 1);
+INSERT INTO album (album_title, year_released, contributor_id, artist_id) VALUES ('From Underneath the Cork Tree', '2004', 1, 2);

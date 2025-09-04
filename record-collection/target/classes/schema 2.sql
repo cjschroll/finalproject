@@ -34,7 +34,9 @@ CREATE TABLE album (
 
 CREATE TABLE genre_album (
     genre_id int NOT NULL,
+    genre_name varchar(60),
     album_id int NOT NULL,
+    album_title varchar(60) NOT NULL,
     UNIQUE KEY (genre_id, album_id),
     FOREIGN KEY (genre_id) REFERENCES genre (genre_id) ON DELETE CASCADE,
     FOREIGN KEY (album_id) REFERENCES album (album_id) ON DELETE CASCADE
