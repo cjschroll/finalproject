@@ -14,42 +14,25 @@ import record.collection.entity.Artist;
 @Service
 public class ArtistService {
     @Autowired
-    private ArtistDao ArtistDao;
-
+    private ArtistDao artistDao;
+    
     public List<Artist> findAll() {
-        return ArtistDao.findAll();
+        return artistDao.findAll();
     }
 
-    public Artist findById(Long artistId) {
-        return ArtistDao.findById(artistId).orElse(null);
+    public Artist findById(Long id) {
+        return artistDao.findById(id).orElse(null);
     }
 
-    public Artist save(Artist collection) {
-        return ArtistDao.save(collection);
-    }
-
-    public void delete(Long artistId) {
-    	ArtistDao.deleteById(artistId);
-    }
-
-	@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
 	public List<ArtistData> retrieveAllArtists() {
-		List<Artist> artistEntities = ArtistDao.findAll();
-		List<ArtistData> artistDtos = new LinkedList<>();
-		
-		for(Artist artist : artistEntities) {
-			ArtistData artistData = new ArtistData(artist);
-			artistDtos.add(artistData);
-		}
-		
+    	List<Artist> artistEntities = artistDao.findAll();
+    	List<ArtistData> artistDtos = new LinkedList<>();
+    	
+    	for(Artist artist : artistEntities) {
+    		ArtistData artistData = new ArtistData(artist);
+    		artistDtos.add(artistData);
+    	}
 		return artistDtos;
-	}
-
-	@Transactional(readOnly = false)
-	public ArtistData saveArtist(ArtistData artistData) {
-		Artist artist = artistData.toArtist();
-		Artist dbArtist = ArtistDao.save(artist);
-		
-		return new ArtistData(dbArtist);
 	}
 }

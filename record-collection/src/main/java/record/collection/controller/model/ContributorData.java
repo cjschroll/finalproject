@@ -138,7 +138,7 @@ public class ContributorData {
             @NoArgsConstructor
             public class AlbumGenreData {
                 private Long genreId;
-                private Long artistId;
+                private Long albumId;
             }
     }
 }

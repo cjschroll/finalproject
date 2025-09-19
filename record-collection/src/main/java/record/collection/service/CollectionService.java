@@ -42,16 +42,16 @@ public class CollectionService {
 		return contributorDao.findById(contributorId).orElseThrow(() -> new NoSuchElementException("Contributor with ID=" + contributorId + " was not found."));
 	}
 
-	@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
 	public List<ContributorData> retrieveAllContributors() {
-		List<Contributor> contributorEntities = contributorDao.findAll();
-		List<ContributorData> contributorDtos = new LinkedList<>();
-		
-		for(Contributor contributor : contributorEntities) {
-			ContributorData contributorData = new ContributorData(contributor);
-			contributorDtos.add(contributorData);
-		}
-		
+    	List<Contributor> contributorEntities = contributorDao.findAll();
+    	List<ContributorData> contributorDtos = new LinkedList<>();
+    	
+    	for(Contributor contributor : contributorEntities) {
+    		ContributorData contributorData = new ContributorData(contributor);
+    		contributorDtos.add(contributorData);
+    	}
+    	
 		return contributorDtos;
 	}
 
@@ -61,6 +61,4 @@ public class CollectionService {
 		contributorDao.delete(contributor);
 		
 	}
-
-
 }

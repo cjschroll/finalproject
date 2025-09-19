@@ -50,7 +50,7 @@ public class CollectionController {
 	
 	@GetMapping("/contributor")
 	public List<ContributorData> retrieveAllContributors() {
-		log.info("Retrieving all contributors");
+		log.info("Retrieving all contributors.");
 		return collectionService.retrieveAllContributors();
 	}
 	

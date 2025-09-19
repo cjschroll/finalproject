@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS genre_album;
 DROP TABLE IF EXISTS album;
-DROP TABLE IF EXISTS contributor;
 DROP TABLE IF EXISTS artist;
+DROP TABLE IF EXISTS contributor;
 DROP TABLE IF EXISTS genre;
 
 CREATE TABLE genre (
@@ -29,7 +29,7 @@ CREATE TABLE album (
     year_released int NOT NULL,
     contributor_id int NOT NULL,
     PRIMARY KEY (album_id),
-    FOREIGN KEY (contributor_id) REFERENCES contributor (contributor_id),
+    FOREIGN KEY (contributor_id) REFERENCES contributor (contributor_id)
 );
 
 CREATE TABLE genre_album (
